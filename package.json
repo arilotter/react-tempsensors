@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "compile": "webpack",
+    "deploy": "npm run compile && scp www/* ari@arilotter.com:/home/ari/temperature",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
