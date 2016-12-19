@@ -44,7 +44,6 @@ class Thermostats extends React.Component {
       }).then(json => {
         return Promise.resolve(JSON.parse(json.result));
       }).then(results => {
-        console.log(results.tmp);
         this.setState(results);
       }).catch(err => {
         // TODO show some nice error
