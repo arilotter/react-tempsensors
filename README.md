@@ -17,6 +17,8 @@ Setup
 ```
 npm install
 ```
+
+Insert your Particle device credentials into `src/Particle.js`.
  
  
  

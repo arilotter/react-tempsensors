@@ -8,8 +8,17 @@ import Thermostats from './Thermostats';
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
+const labels = {
+  '0': 'Jo\'s Room',
+  '1': 'Ari\'s Room',
+  '2': 'Jade\'s Room',
+  '3': 'Shop',
+  '4': 'Living Room',
+  '5': 'Bathroom'
+};
+
 const App = () => (
-  <Thermostats />
+  <Thermostats labels={labels} />
 );
 
 document.addEventListener('DOMContentLoaded', () => {
