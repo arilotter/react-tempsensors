@@ -1,6 +1,8 @@
 React Temperature Sensors Front-end
 ---
  
+![A screenshot of the app](https://github.com/arilotter/react-tempsensors/raw/master/screenshot.png "Screenshot of the app")
+
 
 Usage
 ---
