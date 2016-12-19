@@ -122,7 +122,7 @@ class Thermostat extends React.Component {
           <FlatButton
             onClick={() => this.changeSetpoint(-1)}
             label='Colder'
-            labelPosition='before'
+            labelPosition='after'
             icon={<ColderIcon />}
           />
           <FlatButton
