@@ -17,13 +17,9 @@ const labels = {
   '5': 'Bathroom'
 };
 
-const App = () => (
-  <Thermostats labels={labels} />
-);
-
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App />,
-   document.getElementById('app')
+    <Thermostats labels={labels} />,
+    document.getElementById('app')
   );
 });

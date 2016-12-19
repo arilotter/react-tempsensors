@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import HotterIcon from 'material-ui/svg-icons/content/add';
 import ColderIcon from 'material-ui/svg-icons/content/remove';
+
 import Particle from './Particle';
 
 const muiTheme = getMuiTheme({
