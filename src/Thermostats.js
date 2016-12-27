@@ -82,6 +82,11 @@ class Thermostat extends React.Component {
     this.changeSetpoint = this.changeSetpoint.bind(this);
     this.setSetpoint = this.setSetpoint.bind(this);
   }
+
+  componentWillReceiveProps (nextProps) {
+    this.setState({setpoint: nextProps.setpoint});
+  }
+
   render () {
     return (
       <Paper style={{
