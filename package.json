@@ -4,6 +4,7 @@
   "description": "bing bong",
   "main": "index.js",
   "scripts": {
+    "start": "rm -f www/bundle.js && node server.js",
     "compile": "webpack",
     "deploy": "npm run compile && scp www/* ari@arilotter.com:/home/ari/temperature",
     "test": "echo \"Error: no test specified\" && exit 1"
