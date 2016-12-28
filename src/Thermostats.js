@@ -1,19 +1,11 @@
 import React from 'react';
 import {deepOrange400, red900, amber400, grey100, grey900, white} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import HotterIcon from 'material-ui/svg-icons/content/add';
 import ColderIcon from 'material-ui/svg-icons/content/remove';
 
 import Particle from './Particle';
-
-const muiTheme = getMuiTheme({
-  palette: {
-    accent1Color: deepOrange400
-  }
-});
 
 class Thermostats extends React.Component {
   constructor (props) {
@@ -54,17 +46,15 @@ class Thermostats extends React.Component {
 
   render () {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <div style={{
-          textAlign: 'center'
-        }}>
-        {
-          this.state.tmp.map(reading => {
-            return <Thermostat key={reading.id} id={reading.id} label={this.props.labels[reading.id]} temperature={reading.actual} setpoint={reading.desired} />;
-          })
-        }
-        </div>
-      </MuiThemeProvider>
+      <div style={{
+        textAlign: 'center'
+      }}>
+      {
+        this.state.tmp.map(reading => {
+          return <Thermostat key={reading.id} id={reading.id} label={this.props.labels[reading.id]} temperature={reading.actual} setpoint={reading.desired} />;
+        })
+      }
+      </div>
     );
   }
 }

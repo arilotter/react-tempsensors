@@ -1,3 +1,4 @@
 node_modules/
 www/bundle.js
 src/Particle.js
+npm-debug.log
