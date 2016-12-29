@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import HotterIcon from 'material-ui/svg-icons/content/add';
@@ -82,10 +83,10 @@ class Thermostat extends React.Component {
     return (
       <Paper className={styles.paper}>
         <div className={styles.roomLabel}>{this.props.label}</div>
-        <div className={[
+        <div className={classNames(
           styles.temperatureCircle,
-          this.state.heating ? styles.heating : styles.notHeating
-        ].join(' ')}>{this.props.temperature}</div>
+          {[styles.heating]: this.state.heating}
+        )}>{this.props.temperature}</div>
         <div className={styles.setpoint}>
           <span>{(this.state.heating && <span>heating to</span>) || <span>set to</span>}</span>
           <span> {this.state.setpoint}&deg;</span>
