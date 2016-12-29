@@ -1,0 +1,45 @@
+.container {
+  text-align: center;
+}
+
+.paper {
+  max-width: 228px;
+  margin: 8px;
+  display: inline-block;
+}
+
+.roomLabel {
+  width: calc(100% - 16px);
+  text-align: center;
+  font-size: 2em;
+  padding: 12px;
+}
+
+.temperatureCircle {
+  padding: 24px;
+  width: 64px;
+  height: 64px;
+  line-height: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 64px;
+  font-size: 2.2em;
+}
+.heating {
+  background: linear-gradient(0deg, rgb(183, 28, 28) 0%, rgb(255, 112, 67) 40%, rgb(255, 112, 67) 60%, rgb(255, 202, 40) 100%);
+  color: rgb(255, 255, 255);
+}
+.notHeating {
+  background: rgb(245, 245, 245);
+  color: rgb(33, 33, 33);
+}
+
+.setpoint {
+  text-align: center;
+  font-size: 1.3em;
+  padding: 8px;
+}
+
+.hotterButton {
+  float: right;
+}
