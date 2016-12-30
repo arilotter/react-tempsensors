@@ -1,11 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
-import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
-import HotterIcon from 'material-ui/svg-icons/content/add';
-import ColderIcon from 'material-ui/svg-icons/content/remove';
+import Button from 'react-toolbox/lib/button';
+import { Card } from 'react-toolbox/lib/card';
 import Particle from './Particle';
-import styles from './Thermostats.css';
+import styles from './Thermostats.scss';
 
 class Thermostats extends React.Component {
   constructor (props) {
@@ -13,21 +11,14 @@ class Thermostats extends React.Component {
     this.state = {tmp: []};
   }
   componentDidMount () {
-    this.startPolling();
+    this.poll();
   }
 
   componentWillUnmount () {
-    if (this._timer) {
-      clearInterval(this._timer);
-      this._timer = null;
+    if (this.pollTimer) {
+      clearTimeout(this.pollTimer);
+      this.pollTimer = null;
     }
-  }
-
-  startPolling () {
-    setTimeout(() => {
-      this.poll(); // run once before starting the timer
-      this._timer = setInterval(this.poll.bind(this), 5000);
-    }, 1);
   }
 
   poll () {
@@ -38,13 +29,19 @@ class Thermostats extends React.Component {
         return Promise.resolve(JSON.parse(json.result));
       }).then(results => {
         this.setState(results);
+        this.pollTimer = setTimeout(this.poll.bind(this), 5000);
       }).catch(err => {
-        // TODO show some nice error
-        console.log('parsing failed', err);
+        this.setState({ tmp: [] });
+        // If we failed to connect, wait a bit longer.
+        this.pollTimer = setTimeout(this.poll.bind(this), 10000);
+        console.error('Failed to load temperature data.', err);
       });
   }
 
   render () {
+    if (this.state.tmp.length === 0) {
+      return <p>Loading...</p>;
+    }
     return (
       <div className={styles.container}>{
         this.state.tmp.map(reading => {
@@ -81,8 +78,8 @@ class Thermostat extends React.Component {
 
   render () {
     return (
-      <Paper className={styles.paper}>
-        <div className={styles.roomLabel}>{this.props.label}</div>
+      <Card className={styles.paper}>
+        <h1 className={styles.roomLabel}>{this.props.label}</h1>
         <div className={classNames(
           styles.temperatureCircle,
           {[styles.heating]: this.state.heating}
@@ -92,21 +89,22 @@ class Thermostat extends React.Component {
           <span> {this.state.setpoint}&deg;</span>
         </div>
         <div>
-          <FlatButton
+          <Button
+            flat
             onTouchTap={() => this.changeSetpoint(-1)}
             label='Colder'
-            labelPosition='after'
-            icon={<ColderIcon />}
+            icon='remove'
+            className={styles.colderButton}
           />
-          <FlatButton
+          <Button
+            flat
             onTouchTap={() => this.changeSetpoint(+1)}
             label='Hotter'
-            labelPosition='before'
-            icon={<HotterIcon />}
+            icon='add'
             className={styles.hotterButton}
           />
         </div>
-      </Paper>
+      </Card>
     );
   }
 

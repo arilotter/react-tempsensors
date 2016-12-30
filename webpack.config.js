@@ -1,41 +1,54 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = {
-  context: path.join(__dirname, 'src'),
+  context: __dirname,
   entry: [
-    './app.js'
+    'react-hot-loader/patch',
+    'webpack-hot-middleware/client',
+    './src/app/client.js'
   ],
   output: {
-    path: path.join(__dirname, 'www'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx', '.scss', '.css', '.json'],
+    modulesDirectories: [
+      'node_modules',
+      path.resolve(__dirname, './node_modules')
+    ]
   },
   module: {
     loaders: [
       {
-        test: /\.js$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, '/src')
-      },
-      {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract('css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'),
-        include: path.join(__dirname, '/src')
+        test: /\.jsx?$/,
+        exclude: /(node_modules)/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015', 'react'],
+          plugins: ['react-hot-loader/babel']
+        },
+        include: path.join(__dirname, 'src')
+      }, {
+        test: /\.s?css$/,
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
       }
     ]
   },
-  plugins: [
-    new ExtractTextPlugin('styles.css')
-  ],
-  resolveLoader: {
-    root: [
-      path.join(__dirname, 'node_modules')
-    ]
+  postcss: [autoprefixer],
+  sassLoader: {
+    data: '@import "theme/_config.scss";',
+    includePaths: [path.resolve(__dirname, './src/app')]
   },
-  resolve: {
-    root: [
-      path.join(__dirname, 'node_modules')
-    ]
-  }
+  plugins: [
+    new ExtractTextPlugin('styles.css', { allChunks: true }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
+  ]
 };
 module.exports = config;
