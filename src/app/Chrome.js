@@ -19,6 +19,11 @@ export default class Chrome extends React.Component {
   render () {
     return (
       <div>
+        <AppBar
+          title='Temperature Control'
+          rightIcon='refresh'
+          onRightIconClick={this.props.doRefresh}
+        />
       </div>
     );
   }
