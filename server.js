@@ -4,7 +4,7 @@ const path = require('path');
 const hotMiddleware = require('webpack-hot-middleware');
 const devMiddleware = require('webpack-dev-middleware');
 const internalIp = require('internal-ip');
-const config = require('./webpack.config.js');
+const config = require('./webpack.config.dev');
 
 const app = express();
 const compiler = webpack(config);

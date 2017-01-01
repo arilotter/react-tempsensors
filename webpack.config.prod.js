@@ -2,25 +2,20 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanPlugin = require('clean-webpack-plugin');
 
 const config = {
-  context: __dirname,
+  devtool: 'cheap-module-source-map',
   entry: [
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
     './src/app/client.js'
   ],
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.resolve('./build'),
     filename: 'bundle.js',
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.scss', '.css', '.json'],
-    modulesDirectories: [
-      'node_modules',
-      path.resolve(__dirname, './node_modules')
-    ]
+    extensions: ['', '.js', '.jsx', '.scss', '.css', '.json']
   },
   module: {
     loaders: [
@@ -45,10 +40,31 @@ const config = {
     includePaths: [path.resolve(__dirname, './src/app')]
   },
   plugins: [
+    new CleanPlugin(['build']),
     new ExtractTextPlugin('styles.css', { allChunks: true }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      mangle: {
+        topLevel: true
+      },
+      compress: {
+        warnings: false,
+        sequences: true,
+        dead_code: true,
+        conditionals: true,
+        booleans: true,
+        unused: true,
+        if_return: true,
+        join_vars: true
+      }
+    })
   ]
 };
 module.exports = config;

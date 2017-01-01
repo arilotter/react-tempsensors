@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "compile": "webpack",
+    "compile": "webpack --config webpack.config.prod.js",
     "deploy": "npm run compile && scp www/* ari@arilotter.com:/home/ari/temperature",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -19,6 +19,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "classnames": "^2.2.5",
+    "clean-webpack-plugin": "^0.1.14",
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
