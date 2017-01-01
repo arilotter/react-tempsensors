@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 
 const config = {
   devtool: 'cheap-module-source-map',
@@ -41,6 +42,11 @@ const config = {
   },
   plugins: [
     new CleanPlugin(['build']),
+    new HtmlPlugin({
+      title: 'Temperature Control',
+      hash: true,
+      template: './src/www/index.prod.html'
+    }),
     new ExtractTextPlugin('styles.css', { allChunks: true }),
     new webpack.DefinePlugin({
       'process.env': {

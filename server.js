@@ -18,7 +18,7 @@ app.use(devMiddleware(compiler, {
 app.use(hotMiddleware(compiler));
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './src/www/index.html'));
+  res.sendFile(path.join(__dirname, './src/www/index.dev.html'));
 });
 
 const port = 3000;
