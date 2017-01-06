@@ -23,6 +23,7 @@
     "css-loader": "^0.26.1",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.25.0",
     "immutability-helper": "^2.0.0",
     "internal-ip": "^1.2.0",

@@ -7,12 +7,12 @@ import styles from './Thermostat.scss';
 const Thermostat = (props) => {
   const isHeating = props.temperature < props.setpoint;
   return (
-    <Card className={styles.paper}>
-      <h1 className={styles.roomLabel}>{props.label}</h1>
-      <div className={classNames(
-        styles.temperatureCircle,
+    <Card className={classNames(
+        styles.paper,
         {[styles.heating]: isHeating}
-      )}>{props.temperature}</div>
+      )}>
+      <h1 className={styles.roomLabel}>{props.label}</h1>
+      <div className={styles.temperatureIndicator}>{props.temperature}</div>
       <div className={styles.setpoint}>
         <span>
           {(isHeating && <span>heating to</span>) || <span>set to</span>}&nbsp;

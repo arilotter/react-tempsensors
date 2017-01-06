@@ -81,7 +81,7 @@ class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={styles.container}>
         <Chrome doRefresh={this.doRefresh} />
         <ThermostatsContainer
           labels={labels}
