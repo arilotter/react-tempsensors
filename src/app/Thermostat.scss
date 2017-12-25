@@ -11,22 +11,27 @@
 }
 
 .temperatureIndicator {
-  height: 64px;
-  line-height: 64px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 3em;
+  font-size: 2.7em;
   color: rgb(33, 33, 33);
   text-align: center;
+  border-radius: 32px;
+  width: 112px;
+  height: 112px;
+  line-height: 112px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 112px
 }
 .temperatureIndicator:after {
   content: '°';
-  position: absolute;
 }
 .heating {
   // background: linear-gradient(0deg, rgb(183, 28, 28) 0%, rgb(255, 112, 67) 40%, rgb(255, 112, 67) 60%, rgb(255, 202, 40) 100%);
   // background: linear-gradient(0deg, rgb(255,111,67) 0%, rgb(255,201,40) 10%, rgb(255,255,255) 18%, rgb(255,255,255) 100%);
-  background: linear-gradient(0deg, #FF4E50 0%, #F9D423 50%, white 110%);
+  // background: linear-gradient(0deg, #FF4E50 0%, #F9D423 50%, white 110%);
+  // background: linear-gradient(to top, #ff4b1f, #ff9068);
+  background: linear-gradient(0deg, rgb(183, 28, 28) 0%, rgb(255, 112, 67) 40%, rgb(255, 112, 67) 60%, rgb(255, 202, 40) 100%);
+  color: white;
 }
 
 .setpoint {
