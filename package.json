@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "compile": "webpack --config webpack.config.prod.js",
-    "deploy": "npm run compile && scp www/* ari@arilotter.com:/home/ari/temperature",
+    "deploy": "npm run compile && scp build/* ari@arilotter.com:/home/ari/apps/static/temperature",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
