@@ -47,18 +47,18 @@ class App extends React.Component {
   }
 
   doHold() {
-    const newHoldValue = (!this.state.hold) ? 1 : 0;
-    this.setState({hold: newHoldValue}); // update client-side
+    const newHoldValue = !this.state.hold ? 1 : 0;
+    this.setState({ hold: newHoldValue }); // update client-side
     window
-    .fetch(`${Particle.endpoint}/setHold`, {
-      method: "POST",
-      body: new window.URLSearchParams(
-        `access_token=${Particle.accessToken}&args=${newHoldValue}`
-      )
-    })
-    .catch(err => {
-      console.log("failed to set setpoint", err);
-    });
+      .fetch(`${Particle.endpoint}/setHold`, {
+        method: "POST",
+        body: new window.URLSearchParams(
+          `access_token=${Particle.accessToken}&args=${newHoldValue}`
+        )
+      })
+      .catch(err => {
+        console.log("failed to set setpoint", err);
+      });
   }
 
   poll() {
