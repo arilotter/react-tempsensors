@@ -32,8 +32,8 @@ const config = {
         test: /\.s?css$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!sass')
       }, {
-        test: /\.png$/,
-        loader: 'file'
+        test: /\.(png|jpg|svg)$/,
+        loader: 'file-loader'
       }
     ]
   },
