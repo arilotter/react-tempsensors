@@ -7,8 +7,8 @@ import styles from "./App.scss";
 
 const labels = {
   "0": "Jo's Room",
-  "1": "Ari's Room",
-  "2": "Jade's Room",
+  "1": "Jade's Room",
+  "2": "Ari's Room",
   "3": "Shop",
   "4": "Living Room",
   "5": "Bathroom"
