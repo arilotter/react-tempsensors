@@ -1,4 +1,4 @@
 node_modules/
-src/Particle.js
+src/app/Particle.js
 npm-debug.log
 build/
