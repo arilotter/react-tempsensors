@@ -13,7 +13,7 @@ const config = {
   output: {
     path: path.resolve('./build'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/temperature/'
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.css', '.json']
