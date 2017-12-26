@@ -44,13 +44,14 @@
 
 .waveContainer {
   position: absolute;
-  bottom: 0px;
+  top: 0;
   left: 0;
   right: 0;
   overflow: hidden;
   height: 32px;
   width: 100%;
   pointer-events: none;
+  transform: rotate(180deg);
 }
 
 .wave {
@@ -63,22 +64,22 @@
   height: 32px;
   transform: translate3d(0, 0, 0);
   animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
-  animation-direction: alternate;
   opacity: 0.8;
 }
 
 .wave:nth-of-type(2) {
   background-color: rgb(255, 112, 67);
   bottom: -10px;
-  animation: wave 5s cubic-bezier(0.36, 0.45, 0.63, 0.53) 3.5s infinite,
-    swell 4s ease -1.25s infinite;
+  animation: wave 4.5s cubic-bezier(0.36, 0.45, 0.63, 0.53) 3.5s infinite,
+    swell 4s ease 0s infinite;
+  animation-direction: reverse;
 }
 
 .wave:nth-of-type(3) {
   background-color: rgb(183, 28, 28); 
   bottom: -15px;
   animation: wave 9s cubic-bezier(0.36, 0.45, 0.63, 0.53) 6.6s infinite,
-    swell 7s ease -4.25s infinite;
+    swell 7s ease 0s infinite;
 }
 
 @keyframes wave {
@@ -95,7 +96,13 @@
   100% {
     transform: translate3d(0, -8px, 0);
   }
+  20% {
+    transform: translate3d(0, -2px, 0);
+  }
   50% {
+    transform: translate3d(0, -6px, 0);
+  }
+  70% {
     transform: translate3d(0, 0px, 0);
   }
 }
