@@ -24,6 +24,7 @@ class App extends React.Component {
     this.cancelPollTimer = this.cancelPollTimer.bind(this);
     this.doRefresh = this.doRefresh.bind(this);
     this.doHold = this.doHold.bind(this);
+    this.poll = this.poll.bind(this);
   }
 
   cancelPollTimer() {
@@ -49,34 +50,31 @@ class App extends React.Component {
   doHold() {
     const newHoldValue = !this.state.hold ? 1 : 0;
     this.setState({ hold: newHoldValue }); // update client-side
-    window
-      .fetch(`${Particle.endpoint}/setHold`, {
-        method: "POST",
-        body: new window.URLSearchParams(
-          `access_token=${Particle.accessToken}&args=${newHoldValue}`
-        )
-      })
-      .catch(err => {
-        console.log("failed to set setpoint", err);
-      });
+    fetch(`${Particle.endpoint}/setHold`, {
+      method: "POST",
+      body: new window.URLSearchParams(
+        `access_token=${Particle.accessToken}&args=${newHoldValue}`
+      )
+    }).catch(err => {
+      console.log("failed to set setpoint", err);
+    });
   }
 
   poll() {
-    window
-      .fetch(
-        `${Particle.endpoint}/temperatures?access_token=${Particle.accessToken}`
-      )
+    fetch(
+      `${Particle.endpoint}/temperatures?access_token=${Particle.accessToken}`
+    )
       .then(response => response.json())
       .then(json => {
         const results = JSON.parse(json.result);
         this.setState(results);
-        this.pollTimer = setTimeout(this.poll.bind(this), 5000);
+        this.pollTimer = setTimeout(this.poll, 5000);
         console.log("loaded data successfully");
       })
       .catch(err => {
         this.setState({ tmp: [] });
         // If we failed to connect, wait a bit longer.
-        this.pollTimer = setTimeout(this.poll.bind(this), 10000);
+        this.pollTimer = setTimeout(this.poll, 10000);
         console.error("Failed to load temperature data.", err);
       });
   }
@@ -85,24 +83,22 @@ class App extends React.Component {
     if (setpoint < 0) {
       return;
     }
-    const newTemperatures = this.state.tmp.slice();
+    const newTemperatures = this.state.tmp.slice(); // copy temperatures list
     newTemperatures[id].desired = setpoint;
     this.setState({ tmp: newTemperatures });
-    window
-      .fetch(`${Particle.endpoint}/setSetpoint`, {
-        method: "POST",
-        body: new window.URLSearchParams(
-          `access_token=${Particle.accessToken}&args=${id}${setpoint}`
-        )
-      })
-      .catch(err => {
-        console.log("failed to set setpoint", err);
-      });
+    fetch(`${Particle.endpoint}/setSetpoint`, {
+      method: "POST",
+      body: new window.URLSearchParams(
+        `access_token=${Particle.accessToken}&args=${id}${setpoint}`
+      )
+    }).catch(err => {
+      console.log("failed to set setpoint", err);
+    });
   }
 
   render() {
     return (
-      <div className={styles.container}>
+      <div>
         <Chrome
           doRefresh={this.doRefresh}
           doHold={this.doHold}

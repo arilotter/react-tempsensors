@@ -12,16 +12,13 @@
 }
 
 .temperatureIndicator {
-  font-size: 2.7em;
+  font-size: 4em;
   color: rgb(33, 33, 33);
   text-align: center;
-  border-radius: 32px;
-  width: 112px;
-  height: 112px;
-  line-height: 112px;
+  height: 96px;
+  line-height: 96px;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 112px;
 }
 .temperatureIndicator:after {
   content: "°";
@@ -29,7 +26,8 @@
 
 .setpoint {
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.5em;
+  // font-weight: 100;
   padding: 8px;
 }
 .colderButton {
