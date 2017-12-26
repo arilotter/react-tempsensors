@@ -2,5 +2,6 @@
   h1 {
     letter-spacing: 0.04em;
   }
-  background: $palette-red-500;  
+  background: rgb(255, 112, 67);  
+  transition: all 0.5s ease-out;
 }
